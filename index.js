@@ -7,21 +7,21 @@ $xhr.done(function (data) {
         return;
     }
 
-    console.log(data[0]);
-    let secOne = $("#sectionOne")
-    let aTag = $("#sectionOne").children("a")
-    $("#sectionOne").css("border", "3px solid blue");
+    console.log(data);
+    for(i=0; i < 4; i++){
+    let secOne = $(`#section${i}`)
+    let aTag = $(`#section${i}`).children("a")
+    //$("#sectionOne").css("border", "3px solid blue");
     // 19 is using aTag so no need to have $ for future refrence aTag.attr("href","https://www.google.com");
-    $("#sectionOne").children("a").attr("href", data[0].url);
-    let title1 = aTag.children("h3").text(data[0].title);
-    let summary1 = secOne.children("h6").text(data[0].summary)
-    //
-    let secImg1 = $(".impressions").first()
+    aTag.attr("href", data[i].url);
+    let title1 = aTag.children("h3").text(data[i].title);
+    let summary1 = secOne.children("h6").text(data[i].summary)
+    let secImg1 = $(`#impression${i}`)
     let imgTag = $("<img>")
-    imgTag.attr("src", data[0].imageUrl).css("height", "50px");
+    imgTag.attr("src", data[i].imageUrl).css("height", "50px");
     secImg1.append(imgTag)
     console.log(secImg1)
-});
+}});
 $xhr.fail(function (err) {
     console.log(err)
 });
